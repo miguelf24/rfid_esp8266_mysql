@@ -1,8 +1,8 @@
 <?php
-$servername = "tu_host";
-$username = "tu_usuario";
-$password = "tu_contraseña";
-$dbname = "tu_base_de_datos";
+$servername = "mysql.railway.internal";
+$username = "root";
+$password = "tmQCZVBbxdsdhlWurEdNCPWugNDZJoer";
+$dbname = "railway";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
