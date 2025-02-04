@@ -19,7 +19,7 @@ if (isset($_GET['id']) && isset($_GET['rfid'])) {
     $rfid = mysqli_real_escape_string($conn, $_GET['rfid']);
 
     // Insertar en la base de datos
-    $sql = "INSERT INTO rfid_data (id, rfid) VALUES ('$id', '$rfid')";
+    $sql = "INSERT INTO rfid_data1 (id, rfid) VALUES ('$id', '$rfid')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Datos guardados correctamente";
