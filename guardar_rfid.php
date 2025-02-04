@@ -12,16 +12,22 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Obtener datos de la ESP8266
-$id = $_GET['id'];
-$rfid = $_GET['rfid'];
+// Verificar si los datos fueron enviados
+if (isset($_GET['id']) && isset($_GET['rfid'])) {
+    // Limpiar datos para evitar inyección SQL
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $rfid = mysqli_real_escape_string($conn, $_GET['rfid']);
 
-// Insertar en la base de datos
-$sql = "INSERT INTO rfid_data1 (id, rfid) VALUES ('$id', '$rfid')";
-if ($conn->query($sql) === TRUE) {
-    echo "Datos guardados correctamente";
+    // Insertar en la base de datos
+    $sql = "INSERT INTO rfid_data (id, rfid) VALUES ('$id', '$rfid')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Datos guardados correctamente";
+    } else {
+        echo "Error en la inserción: " . $conn->error;
+    }
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: Faltan datos.";
 }
 
 // Cerrar conexión
