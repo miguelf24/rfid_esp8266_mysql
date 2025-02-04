@@ -13,13 +13,13 @@ if ($conn->connect_error) {
 }
 
 // Verificar si los datos fueron enviados
-if (isset($_GET['id']) && isset($_GET['rfid'])) {
+if (isset($_GET['N']) && isset($_GET['rfid'])) {
     // Limpiar datos para evitar inyección SQL
-    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $N = mysqli_real_escape_string($conn, $_GET['N']);
     $rfid = mysqli_real_escape_string($conn, $_GET['rfid']);
 
     // Insertar en la base de datos
-    $sql = "INSERT INTO rfid_data1 (id, rfid) VALUES ('$id', '$rfid')";
+    $sql = "INSERT INTO rfid_data2 (N, rfid) VALUES ('$N', '$rfid')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Datos guardados correctamente";
