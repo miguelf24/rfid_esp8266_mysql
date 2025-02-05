@@ -1,30 +1,41 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Configuración de la base de datos (Railway)
+$host = "mysql-production-a8d6.up.railway.app"; // Cambia esto si el host es diferente
+$dbname = "railway";
+$user = "root"; // O el usuario que hayas configurado en Railway
+$pass = "tmQCZVBbxs..."; // Tu contraseña real
+$port = 3306;
 
-// Cargar variables de entorno desde Railway
-$host = getenv("DB_SERVER") ?: "NO DEFINIDO";
-$port = getenv("DB_PORT") ?: "3306";
-$username = getenv("DB_USER") ?: "NO DEFINIDO";
-$password = getenv("DB_PASSWORD") ?: "NO DEFINIDO";
-$database = getenv("DB_NAME") ?: "NO DEFINIDO";
+// Conectar a la base de datos
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 
-echo "<strong>🔍 Debugging Variables:</strong><br>";
-echo "Servidor: $host<br>";
-echo "Puerto: $port<br>";
-echo "Usuario: $username<br>";
-echo "Contraseña: " . ($password === "NO DEFINIDO" ? "NO DEFINIDO" : "********") . "<br>";
-echo "Base de datos: $database<br>";
-
-if ($host === "NO DEFINIDO" || $username === "NO DEFINIDO" || $password === "NO DEFINIDO" || $database === "NO DEFINIDO") {
-    die("❌ ERROR: Variables de entorno no definidas correctamente en Railway.");
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 
-// Intentar conectar a la base de datos
-try {
-    $conn = new PDO("mysql:host=$host;port=$port;dbname=$database", $username, $password);
-    echo "✅ Conexión exitosa a la base de datos.";
-} catch (PDOException $e) {
-    echo "❌ Error de conexión: " . $e->getMessage();
+// Verificar si se recibieron datos desde la ESP8266
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["N"]) && isset($_POST["rfid"])) {
+        $N = intval($_POST["N"]); // Convertir a entero
+        $rfid = $conn->real_escape_string($_POST["rfid"]); // Prevenir SQL Injection
+
+        // Insertar en la base de datos
+        $sql = "INSERT INTO registros (N, rfid, fecha) VALUES ('$N', '$rfid', NOW())";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Datos guardados correctamente";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    } else {
+        echo "Faltan datos (N y rfid)";
+    }
+} else {
+    echo "Método de solicitud inválido";
 }
+
+// Cerrar la conexión
+$conn->close();
 ?>
+
