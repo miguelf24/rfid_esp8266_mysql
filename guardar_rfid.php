@@ -5,16 +5,7 @@ $username   = getenv("DB_USER");
 $password   = getenv("DB_PASSWORD");
 $dbname     = getenv("DB_NAME");
 $port       = getenv("DB_PORT");
-
-<?php
-echo "DB_SERVER: " . getenv("DB_SERVER") . "<br>";
-echo "DB_USER: " . getenv("DB_USER") . "<br>";
-echo "DB_PASSWORD: " . getenv("DB_PASSWORD") . "<br>";
-echo "DB_NAME: " . getenv("DB_NAME") . "<br>";
-echo "DB_PORT: " . getenv("DB_PORT") . "<br>";
-?>
-
-
+ 
 // Verificar si las variables existen
 if (!$servername || !$username || !$password || !$dbname || !$port) {
     die("❌ Error: Variables de entorno no definidas.");
