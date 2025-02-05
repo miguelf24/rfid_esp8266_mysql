@@ -1,13 +1,18 @@
 <?php
-// Obtener credenciales desde Railway (Variables de entorno)
-$servername = $_ENV["DB_SERVER"] ?? "mysql.railway.internal";
-$username   = $_ENV["DB_USER"] ?? "root";
-$password   = $_ENV["DB_PASSWORD"] ?? "tmQCZVBbxdsdhlWurEdNCPWugNDZJoer";
-$dbname     = $_ENV["DB_NAME"] ?? "railway";
-$port       = $_ENV["DB_PORT"] ?? "3306";  // Puerto por defecto
+// Obtener credenciales de Railway (Usando variables de entorno)
+$servername = getenv("DB_SERVER");
+$username   = getenv("DB_USER");
+$password   = getenv("DB_PASSWORD");
+$dbname     = getenv("DB_NAME");
+$port       = getenv("DB_PORT");
+
+// Verificar si las variables existen
+if (!$servername || !$username || !$password || !$dbname || !$port) {
+    die("❌ Error: Variables de entorno no definidas.");
+}
 
 // Crear conexión segura
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($servername, $username, $password, $dbname, intval($port));
 
 // Verificar conexión
 if ($conn->connect_error) {
