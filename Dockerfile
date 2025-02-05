@@ -9,5 +9,5 @@ COPY . /var/www/html/
 # Exponer el puerto 80 para acceso web
 EXPOSE 80
 
-# Asegurar que Apache se inicia correctamente
-ENTRYPOINT ["apache2-foreground"]
+# Iniciar Apache manualmente
+CMD ["apachectl", "-D", "FOREGROUND"]
