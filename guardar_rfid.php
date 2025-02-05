@@ -1,9 +1,9 @@
 <?php
 
-$servername = getenv("MYSQLHOST");
-$username   = getenv("MYSQLUSER");
-$password   = getenv("MYSQLPASSWORD");
-$dbname     = getenv("MYSQL_DATABASE");
+$servername = $env["MYSQLHOST"];
+$username   = $env["MYSQLUSER"];
+$password   = $env["MYSQLPASSWORD"];
+$dbname     = $env["MYSQL_DATABASE"];
 
 echo "Servidor: $servername<br>";
 echo "Usuario: $username<br>";
