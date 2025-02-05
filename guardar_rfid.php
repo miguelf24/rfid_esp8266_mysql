@@ -1,14 +1,11 @@
 <?php
+echo "<h2>🔍 Listando TODAS las Variables de Entorno</h2>";
+foreach (getenv() as $key => $value) {
+    echo "$key = $value <br>";
+}
 
-$servername = $_ENV["MYSQLHOST"];
-$username   = $_ENV["MYSQLUSER"];
-$password   = $_ENV["MYSQLPASSWORD"];
-$dbname     = $_ENV["MYSQL_DATABASE"];
-
-echo "Servidor: $servername<br>";
-echo "Usuario: $username<br>";
-echo "Contraseña: $password<br>";
-echo "Base de datos: $dbname<br>";
-
+echo "<br><h2>🔍 Listando TODAS las Variables del Servidor</h2>";
+foreach ($_SERVER as $key => $value) {
+    echo "$key = $value <br>";
+}
 ?>
-
