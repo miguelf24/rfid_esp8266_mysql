@@ -1,9 +1,9 @@
 <?php
-$servername = $_ENV["DB_SERVER"] ?? "NO DEFINIDO";
-$username   = $_ENV["DB_USER"] ?? "NO DEFINIDO";
-$password   = $_ENV["DB_PASSWORD"] ?? "NO DEFINIDO";
-$dbname     = $_ENV["DB_NAME"] ?? "NO DEFINIDO";
-$port       = $_ENV["DB_PORT"] ?? "NO DEFINIDO";
+$servername = $_SERVER["DB_SERVER"] ?? "NO DEFINIDO";
+$username   = $_SERVER["DB_USER"] ?? "NO DEFINIDO";
+$password   = $_SERVER["DB_PASSWORD"] ?? "NO DEFINIDO";
+$dbname     = $_SERVER["DB_NAME"] ?? "NO DEFINIDO";
+$port       = $_SERVER["DB_PORT"] ?? "NO DEFINIDO";
 
 echo "Servidor: $servername<br>";
 echo "Usuario: $username<br>";
