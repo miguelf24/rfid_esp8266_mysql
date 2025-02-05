@@ -3,11 +3,11 @@
 $host = "mysql-production-a8d6.up.railway.app"; // Cambia esto si el host es diferente
 $dbname = "railway";
 $user = "root"; // O el usuario que hayas configurado en Railway
-$pass = "tmQCZVBbxs..."; // Tu contraseña real
-$port = 3306;
+$pass = "tmQCZVBbxdsdhlWurEdNCPWugNDZJoer"; // Tu contraseña real
+
 
 // Conectar a la base de datos
-$conn = new mysqli($host, $user, $pass, $dbname, $port);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
 // Verificar la conexión
 if ($conn->connect_error) {
