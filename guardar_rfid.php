@@ -1,12 +1,13 @@
 <?php
-// Configuración de la base de datos con variables de entorno
+// Obtener credenciales desde Railway (Variables de entorno)
 $servername = $_ENV["DB_SERVER"] ?? "mysql.railway.internal";
-$username   = $_ENV["DB_USER"] ?? "root";
-$password   = $_ENV["DB_PASSWORD"] ?? "tu_contraseña"; // Reemplaza si es necesario
-$dbname     = $_ENV["DB_NAME"] ?? "railway";
+$username   = $_ENV["DB_USER"] ?? "tu_usuario_mysql";
+$password   = $_ENV["DB_PASSWORD"] ?? "tu_contraseña_mysql";
+$dbname     = $_ENV["DB_NAME"] ?? "tu_nombre_de_base_de_datos";
+$port       = $_ENV["DB_PORT"] ?? "3306";  // Puerto por defecto
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Crear conexión segura
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Verificar conexión
 if ($conn->connect_error) {
