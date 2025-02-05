@@ -14,7 +14,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: tmQCZVBbxdsdhlWurEdNCPWugNDZJoer
       MYSQL_DATABASE: railway
-      MYSQL_USER: miguelf24
+      MYSQL_USER: root
       MYSQL_PASSWORD: tmQCZVBbxdsdhlWurEdNCPWugNDZJoer
     ports:
       - "3306:3306"
