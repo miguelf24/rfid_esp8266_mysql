@@ -5,6 +5,7 @@ services:
     build: .
     ports:
       - "80:80"
+      entrypoint: ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
     depends_on:
       - db 
 
@@ -14,7 +15,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: tmQCZVBbxdsdhlWurEdNCPWugNDZJoer
       MYSQL_DATABASE: railway
-      MYSQL_USER: root
+      MYSQL_USER: miguelf24
       MYSQL_PASSWORD: tmQCZVBbxdsdhlWurEdNCPWugNDZJoer
     ports:
       - "3306:3306"
