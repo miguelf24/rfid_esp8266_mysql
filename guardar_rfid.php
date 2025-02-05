@@ -1,8 +1,9 @@
 <?php
-$servername = "mysql.railway.internal";
-$username = "root";
-$password = "tmQCZVBbxdsdhlWurEdNCPWugNDZJoer";
-$dbname = "railway";
+// Cargar variables desde el entorno de Railway
+$servername = getenv("DB_SERVER");
+$username = getenv("DB_USER");
+$password = getenv("DB_PASSWORD");
+$dbname = getenv("DB_NAME");
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +15,6 @@ if ($conn->connect_error) {
 
 // Verificar si los datos fueron enviados
 if (isset($_GET['N']) && isset($_GET['rfid'])) {
-    // Limpiar datos para evitar inyección SQL
     $N = mysqli_real_escape_string($conn, $_GET['N']);
     $rfid = mysqli_real_escape_string($conn, $_GET['rfid']);
 
