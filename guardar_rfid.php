@@ -1,6 +1,8 @@
 <?php
-// Intentar obtener la URL del servicio desde Railway
-$servername = getenv("RAILWAY_SERVICE_MYSQL_URL") ?: "NO DEFINIDO";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+$servername = getenv("MYSQLHOST") ?: "NO DEFINIDO";
 $username   = getenv("MYSQLUSER") ?: "NO DEFINIDO";
 $password   = getenv("MYSQLPASSWORD") ?: "NO DEFINIDO";
 $database   = getenv("MYSQLDATABASE") ?: "NO DEFINIDO";
