@@ -5,10 +5,8 @@ services:
     build: .
     ports:
       - "80:80"
-      entrypoint: ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
     depends_on:
-      - db 
-
+      - db
   db:
     image: mysql:5.7
     restart: always
